@@ -29,11 +29,6 @@ function join_module_prison(id)
 end
 addhook("join", "join_module_prison", -999999)
 
-function spawn_module_prison(id)
-    nullifyHandcuffs(id)
-end
-addhook("spawn", "spawn_module_prison", -999999)
-
 function attack_module_prison(id)
     local rot = player(id, "rot")
     local angle = math.rad(math.abs(rot +90)) - math.pi
@@ -80,6 +75,11 @@ function hit_module_prison(id, source, weapon)
 end
 addhook("hit", "hit_module_prison")
 
+function spawn_module_prison(id)
+    nullifyHandcuffs(id)
+end
+addhook("spawn", "spawn_module_prison", -999999)
+
 function select_module_prison(id)
     if prison[id].handcuffs then parse("setweapon "..id.." 78") end
 end
@@ -88,14 +88,14 @@ addhook("select", "select_module_prison", -999999)
 function walkover_module_prison(id)
 	if prison[id].handcuffs then return 1 end
 end
-addhook("walkover", "walkover_module_prison")
+addhook("walkover", "walkover_module_prison", -999999)
 
 function drop_module_prison(id)
 	if prison[id].handcuffs then return 1 end
 end
-addhook("drop", "drop_module_prison")
+addhook("drop", "drop_module_prison", -999999)
 
 function die_module_prison(victim)
 	if prison[victim].handcuffs then parse("strip "..victim.." 78") end
 end
-addhook("die", "die_module_prison")
+addhook("die", "die_module_prison", -999999)

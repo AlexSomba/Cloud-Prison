@@ -5,7 +5,7 @@ prison.handcuffs = {
         image = "gfx/cloud/prison/handcuffs.png",
         sfx = {
             lock = "cloud/prison/ChainLock.wav",
-            destroy = "cloud/prison/ChainBreak.wav",
+            unlock = "cloud/prison/ChainBreak.wav",
             hit = "cloud/prison/ChainHit.wav"
         },
         properties = {
@@ -67,7 +67,7 @@ function hit_module_prison(id, source, weapon)
                 parse("sv_soundpos "..prison.handcuffs.config.sfx.lock.." "..player(id, "x").." "..player(id, "y"))
             else
     			nullifyHandcuffs(id)
-                parse("sv_soundpos "..prison.handcuffs.config.sfx.destroy.." "..player(id, "x").." "..player(id, "y"))
+                parse("sv_soundpos "..prison.handcuffs.config.sfx.unlock.." "..player(id, "x").." "..player(id, "y"))
     		end
         end
 --        return 1

@@ -14,28 +14,6 @@ prison.handcuffs = {
     }
 }
 
-prison.commands = {
-    t = {
-        syntax = cloud.tags.syntax.."!t",
-        about = cloud.tags.about.."",
-        func = function(id, pl, text, tbl)
-            if not prison[id].handcuffs then
-    			prison[id].handcuffs = true
-    			prison[id].handcuffs_endurance = prison.handcuffs.config.properties.endurance
-                prison[id].handcuffs_image = image(prison.handcuffs.config.image, 2, -1, id+200)
-    			parse("equip "..id.." 78")
-    			parse("setweapon "..id.." 78")
-                parse("sv_soundpos "..prison.handcuffs.config.sfx.lock.." "..player(id, "x").." "..player(id, "y"))
-            else
-    			nullifyHandcuffs(id)
-                parse("sv_soundpos "..prison.handcuffs.config.sfx.destroy.." "..player(id, "x").." "..player(id, "y"))
-    		end
-        end
-    }
-}
-
-addCommandModule("prison", prison.commands)
-
 nullifyHandcuffs = function(id)
     if prison[id].handcuffs then
         prison[id].handcuffs = false
